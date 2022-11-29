@@ -10,7 +10,7 @@ class Scanner():
         self.tokens_types = []
         self.tokens_values = []
 
-
+    @staticmethod
     def remove_comments(self):
         for i in range(len(self.tiny_code)):
             if i < len(self.tiny_code):
@@ -21,10 +21,22 @@ class Scanner():
                     self.tiny_code = self.tiny_code[:i] + self.tiny_code[j+1:]
         return
     
+    #method that generate output file of tokens
+    def generate_tokens(self):
+        Scanner.Scan(self)
+        Scanner_out = ""
+        for i in range(len(self.tokens_values)-1):
+            Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i])
+        print(Scanner_out)
+        f = open("tokens.txt", "w+")
+        f.write(Scanner_out)
+        f.close()
 
+
+    @staticmethod
     def Scan(self):
-        #remove comments before start
-        self.remove_comments()
+        #remove comments before start scanning
+        Scanner.remove_comments(self)
         #local list to store token_values on it
         tokens_list = []
 
@@ -122,13 +134,7 @@ if __name__ == "__main__":
         Scanner_test = Scanner(sys.argv[1])
     else:
         print("Please enter right aruments\n python scanner.py FILE_NAME")
-    Scanner_test.Scan()
-    Scanner_out = ""
-    for i in range(len(Scanner_test.tokens_values)-1):
-        Scanner_out += "{},{}\n".format(Scanner_test.tokens_values[i],Scanner_test.tokens_types[i])
-    print(Scanner_out)
-    f = open("tokens.txt", "w+")
-    f.write(Scanner_out)
-    f.close()
+
+    Scanner_test.generate_tokens()
 
 
