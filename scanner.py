@@ -114,13 +114,20 @@ class Scanner():
 ######################################################################
 
 if __name__ == "__main__":
-    Scanner_test = Scanner(sys.argv[1])
+    if len(sys.argv) == 1:
+        print("Tokens generated from input.txt file:")
+        Scanner_test = Scanner("input.txt")
+    elif len(sys.argv) == 2:
+        print("Tokens generated from {} file:".format(sys.argv[1]))
+        Scanner_test = Scanner(sys.argv[1])
+    else:
+        print("Please enter right aruments\n python scanner.py FILE_NAME")
     Scanner_test.Scan()
     Scanner_out = ""
     for i in range(len(Scanner_test.tokens_values)-1):
         Scanner_out += "{},{}\n".format(Scanner_test.tokens_values[i],Scanner_test.tokens_types[i])
     print(Scanner_out)
-    f = open("Scanner_out.txt", "w+")
+    f = open("tokens.txt", "w+")
     f.write(Scanner_out)
     f.close()
 
