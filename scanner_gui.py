@@ -16,7 +16,8 @@ class MyGUI(QMainWindow):
 
         self.EnterButton.clicked.connect(self.Enter)
         self.scanButton.clicked.connect(self.Scan)
-        self.scanButton.clicked.connect(self.Parse)
+        self.parseButton.clicked.connect(self.Parse)
+
 
     def Enter(self):
         if self.lineEdit.text() != "" and os.path.exists(self.lineEdit.text()):
@@ -54,6 +55,3 @@ def main():
     app = QApplication([])
     window = MyGUI()
     app.exec()
-
-if __name__ == "__main__":
-    main()

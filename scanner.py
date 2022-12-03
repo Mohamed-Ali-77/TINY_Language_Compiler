@@ -140,7 +140,7 @@ class Scanner():
         self.tokens_types = tokens_types
 
 ###############################################################################################################
-
+"""
 if __name__ == "__main__":
     #if len(sys.argv) == 1:
         #print("Please enter right arguments\npython scanner.py FILE_NAME\nFILE_NAME that have TINY_CODE")
@@ -152,3 +152,4 @@ if __name__ == "__main__":
     Scanner_test.generate_tokens()
     #else:
         #pass
+"""
