@@ -1,2 +1,5 @@
 __pycache__
-gui_scanner.py
+scanner.spec
+ui_scannerui.py
+dist
+build

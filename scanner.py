@@ -24,12 +24,12 @@ class Scanner():
             if i < len(self.tiny_code):
                 if self.tiny_code[i] == '{' :
                     j = i
-                    while self.tiny_code[j] != '}' and j < len(self.tiny_code) :
+                    while self.tiny_code[j] != '}' and j < len(self.tiny_code):
                         j= j+1
                     self.tiny_code = self.tiny_code[:i] + self.tiny_code[j+1:]
         return
     
-    #method that generate output file of tokens
+    # method that generate output file of tokens
     def generate_tokens(self):
         Scanner.Scan(self)
         Scanner_out = ""
@@ -41,6 +41,15 @@ class Scanner():
         f = open("tokens.txt", "w+")
         f.write(Scanner_out)
         f.close()
+    # method that generate output tokens For UI
+    def generate_tokens_UI(self):
+        Scanner.Scan(self)
+        Scanner_out = ""
+        while("" in self.tokens_values):
+            self.tokens_values.remove("")
+        for i in range(len(self.tokens_types)):
+            Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i])
+        return Scanner_out
 
     @staticmethod
     def Scan(self):
