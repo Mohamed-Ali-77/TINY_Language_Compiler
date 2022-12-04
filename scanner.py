@@ -51,7 +51,6 @@ class Scanner():
             Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i])
         return Scanner_out
 
-    @staticmethod
     def Scan(self):
         #remove comments before start scanning
         Scanner.remove_comments(self)
