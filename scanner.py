@@ -127,11 +127,11 @@ class Scanner():
             elif t in special_sympols:
                 tokens_types.append(tokens_map[t])
             elif t == ":=":
-                tokens_types.append("ASSIGN")
+                tokens_types.append('ASSIGN')
             elif t.isdigit():
-                tokens_types.append("NUMBER")
+                tokens_types.append('NUMBER')
             elif t.isalpha():
-                tokens_types.append("IDENTIFIER")
+                tokens_types.append('IDENTIFIER')
             else:
                 pass
         # Store the local variables into object attributes
