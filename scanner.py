@@ -3,6 +3,7 @@ import os
 from io import StringIO
 
 class Scanner():
+    # constructor
     def __init__(self, file_name=""):
         self.file_name = file_name
         text_file = open(self.file_name, "r")
@@ -35,9 +36,9 @@ class Scanner():
     def generate_tokens(self): 
         Scanner.Scan(self) # call scan method
         Scanner_out = "" # local variable to store output
-        while("" in self.tokens_values): # remove empty strings from tokens_values list
-            self.tokens_values.remove("")
-        for i in range(len(self.tokens_types)): # loop over tokens_types list
+        self.tokens_values = [e for e in self.tokens_values if e not in ["\n (ERROR)", "\\ (ERROR)","\n","\\"]] # remove error tokens
+        self.tokens_types = [e for e in self.tokens_types if e not in ("\n (ERROR)", "\\ (ERROR)")] # remove error tokens
+        for i in range(len(self.tokens_values)): # loop over tokens_types list
             Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i]) # append to output
         f = open("output_tokens/tokens_"+ str(os.path.basename(self.file_name)), "w+") # open file to write
         f.write(Scanner_out) # write output to file
@@ -47,11 +48,16 @@ class Scanner():
     def generate_tokens_UI(self):
         Scanner.Scan(self) # call scan method
         Scanner_out = "" # local variable to store output
-        while("" in self.tokens_values): # remove empty strings from tokens_values list
-            self.tokens_values.remove("")
-        for i in range(len(self.tokens_types)): # loop over tokens_types list
-            Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i])
-        return Scanner_out # return output
+        error_line = None
+        self.tokens_values = [e for e in self.tokens_values if e not in ["\n (ERROR)", "\\ (ERROR)","\n","\\"]]
+        self.tokens_types = [e for e in self.tokens_types if e not in ("\n (ERROR)", "\\ (ERROR)")]
+        for i in range(len(self.tokens_values)): # loop over tokens_types list
+            Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i]) # append to output
+            if self.tokens_types[i].find("ERROR") != -1:
+                error_line = i 
+        if error_line == None:
+            return Scanner_out , None
+        return Scanner_out, error_line # return output
 
     def Scan(self): # method that scan the input file
         #remove comments before start scanning
@@ -91,6 +97,7 @@ class Scanner():
                         token_string += tiny_in[i] # append char to token_string
                         state = "INASSIGN" # change state to INASSIGN
                     else: # check if char is any other char
+                        token_string += tiny_in[i] # append char to token_string
                         state = "DONE"  # change state to DONE
                 elif state == "INID": # check if state is INID
                     if tiny_in[i].isalpha(): # check if char is alphabet
@@ -135,22 +142,24 @@ class Scanner():
             elif t.isalpha(): # check if token is alphabet
                 tokens_types.append('IDENTIFIER') # append token to tokens_types
             else:
-                pass
+                tokens_types.append(t + " (ERROR)") # error token
         # Store the local variables into object attributes
         self.tokens_values = tokens_list    
         self.tokens_types = tokens_types
 
 ###############################################################################################################
-"""
+# Main Function
 if __name__ == "__main__":
     #if len(sys.argv) == 1:
         #print("Please enter right arguments\npython scanner.py FILE_NAME\nFILE_NAME that have TINY_CODE")
     #elif len(sys.argv) == 2:
     print("Please Enter the file name that have TINY_CODE and tokens file will be generated in the same directory:")
-    file_name = input("Enter File name: ")
+    file_name = "test_codes/input.txt"
     print("Tokens generated from {} file:".format(file_name))
     Scanner_test = Scanner(file_name)
-    Scanner_test.generate_tokens()
+    Scanner_test.Scan()
+    tokens , line = Scanner_test.generate_tokens_UI()
+    print(tokens)
+    print(line)
     #else:
         #pass
-"""
