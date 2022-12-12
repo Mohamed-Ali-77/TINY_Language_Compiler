@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtGui import QColor, QSyntaxHighlighter, QTextCharFormat
 import qdarktheme
 from PyQt6 import uic, QtGui
-from Scanner import Scanner
+from scanner import Scanner
 from Parser_class import Parser
 from SyntaxHighlighting import SyntaxHighlighter
 import networkx as nx
@@ -26,11 +26,20 @@ class MyGUI(QMainWindow):
 
         self.highlighter = SyntaxHighlighter(self.plainTextEdit.document())
 
+        # Create formatted strings
+        self.fmt = QTextCharFormat()
+        self.fmt.setBackground(QColor('red'))
+
+        self.highlighter.clear_highlight()
+
         # Attripute to store file name/path
         self.Filename = "" 
 
         # Attribute to store scanner object
-        self.Scanned = None 
+        self.Scanned = None
+
+        # Attribute to store tokens
+        self.tokens = ""
 
         # Attribute to store parser object
         self.Parsed = None
@@ -110,26 +119,35 @@ class MyGUI(QMainWindow):
     def Scan(self): 
         self.plainTextEdit.setEnabled(True) # Enable plainTextEdit
         self.Scanned = Scanner(str(self.Filename)) # Create Scanner object
-        tokens = self.Scanned.generate_tokens_UI() # Get tokens from Scanner
+        self.tokens, error_line = self.Scanned.generate_tokens_UI() # Get tokens from Scanner
 
-        if tokens != "": # Check if Scanner succeeded
-            self.plainTextEdit.setPlainText(str(tokens)) # Write tokens into plainTextEdit
+        if self.tokens != "" and self.tokens.find("(ERROR)") == -1: # Check if Scanner succeeded
+            self.plainTextEdit.setPlainText(str(self.tokens)) # Write tokens into plainTextEdit
             self.parseButton.setEnabled(True) # Enable parseButton
             self.generateButton.setEnabled(True) # Enable generateButton
         # POP error message if Scanner failed
-        else: 
+        else:
+            self.plainTextEdit.setPlainText(str(self.tokens)) # Write tokens into plainTextEdit
+            # Highlight error line   
+            try:
+                self.highlighter.highlight_line(error_line, self.fmt)
+            except ValueError:
+                pass
+
+            # POP error message if Scanner failed
             message2 = QMessageBox() 
             message2.setIcon(QMessageBox.Icon.Critical) 
             message2.setWindowTitle("Error")
-            message2.setText("Scanner Failed.\nPlease check code.")
+            message2.setText("Scanner Failed.\nPlease check code at (ERROR) Token")
             message2.exec()
+
 
     # Method to create tokens file
     def Generate(self): 
         self.Scanned.generate_tokens() # Generate tokens file -> tokens.txt
 
 
-    
+    # Method to take tokens and parse it into parser class to create AST and show it
     def pygraphviz_layout_with_rank(self, G, prog="dot", root=None, sameRank=[], args=""): # Layout for AST
         try: # pygraphviz_layout was removed in networkx 2.0
             import pygraphviz 
@@ -157,6 +175,7 @@ class MyGUI(QMainWindow):
                 node_pos[n] = (0.0, 0.0) # write position
         return node_pos # return node_pos
 
+    
     def draw_AST(self, same_rank_nodes):    # Draw AST
         graph = self.G  # nx.DiGraph()
         pos = self.pygraphviz_layout_with_rank(graph, prog='dot', sameRank=same_rank_nodes)  
@@ -179,14 +198,8 @@ class MyGUI(QMainWindow):
         if succes: # if parser succeeded
             self.drawButton.setEnabled(True) # enable drawButton
         else:
-            # Create formatted strings
-            fmt = QTextCharFormat()
-            fmt.setBackground(QColor('red'))
-
-            self.highlighter.clear_highlight()
-
             try:
-                self.highlighter.highlight_line(index, fmt)
+                self.highlighter.highlight_line(index, self.fmt)
             except ValueError:
                 pass
 
@@ -221,3 +234,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+""" Scanned = Scanner("test_codes/input.txt") # create object from scanner class
+    Scanned.Scan() # pass file name to scanner
+
+    Parsed = Parser() # create object from parser class
+    Parsed.set_tokens_types_and_tokens_values(Scanned.tokens_types, Scanned.tokens_values) # pass tokens to parser
+
+    succes, index = Parsed.run() # call run method to create AST"""
