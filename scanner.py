@@ -1,9 +1,11 @@
 import sys
+import os
 from io import StringIO
 
 class Scanner():
-    def __init__(self, file_name):
-        text_file = open(file_name, "r")
+    def __init__(self, file_name=""):
+        self.file_name = file_name
+        text_file = open(self.file_name, "r")
         tiny_code = text_file.read()
         tiny_code.encode(encoding="utf-8")
         tiny_code = tiny_code.translate(str.maketrans({"-":  r"\-",
@@ -30,112 +32,112 @@ class Scanner():
         return
     
     # method that generate output file of tokens
-    def generate_tokens(self):
-        Scanner.Scan(self)
-        Scanner_out = ""
-        while("" in self.tokens_values):
+    def generate_tokens(self): 
+        Scanner.Scan(self) # call scan method
+        Scanner_out = "" # local variable to store output
+        while("" in self.tokens_values): # remove empty strings from tokens_values list
             self.tokens_values.remove("")
-        for i in range(len(self.tokens_types)):
-            Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i])
-        print(Scanner_out)
-        f = open("tokens.txt", "w+")
-        f.write(Scanner_out)
-        f.close()
+        for i in range(len(self.tokens_types)): # loop over tokens_types list
+            Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i]) # append to output
+        f = open("output_tokens/tokens_"+ str(os.path.basename(self.file_name)), "w+") # open file to write
+        f.write(Scanner_out) # write output to file
+        f.close()   # close file
+    
     # method that generate output tokens For UI
     def generate_tokens_UI(self):
-        Scanner.Scan(self)
-        Scanner_out = ""
-        while("" in self.tokens_values):
+        Scanner.Scan(self) # call scan method
+        Scanner_out = "" # local variable to store output
+        while("" in self.tokens_values): # remove empty strings from tokens_values list
             self.tokens_values.remove("")
-        for i in range(len(self.tokens_types)):
+        for i in range(len(self.tokens_types)): # loop over tokens_types list
             Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i])
-        return Scanner_out
+        return Scanner_out # return output
 
-    def Scan(self):
+    def Scan(self): # method that scan the input file
         #remove comments before start scanning
-        Scanner.remove_comments(self)
+        Scanner.remove_comments(self)   # call remove_comments method
 
-        special_sympols = [';','=','<','>','+','-','*','/','(',')']
-        reversed_words = ['if','then','else','end','repeat','until','read','write']
+        special_sympols = [';','=','<','>','+','-','*','/','(',')'] # list of special symbols
+        reversed_words = ['if','then','else','end','repeat','until','read','write'] # list of reversed words
 
         tokens_map = {";":"SEMICOLON","=":"EQUAL","<":"LESSTHAN",">":"GREATERTHAN","+":"PLUS","-":"MINUS","*":"MULT",
-                        "/":"DIV","(":"OPENBRACKET",")":"CLOSEDBRACKET"}
+                        "/":"DIV","(":"OPENBRACKET",")":"CLOSEDBRACKET"} # map of special symbols
         
         #local list to store token_values on it
-        tokens_list = []
+        tokens_list = [] 
         #loop over each line
-        for tiny_in in StringIO(self.tiny_code):
-            token_string = ""
-            state = "START"
-            i = 0
+        for tiny_in in StringIO(self.tiny_code): # loop over each line
+            token_string = "" # local variable to store token_value
+            state = "START" # local variable to store state
+            i = 0 
             #iterate for every char
-            while i < len(tiny_in):
-                if tiny_in[i] in special_sympols and state != "INASSIGN":
-                    if (token_string != ""):
-                        tokens_list.append(token_string)
-                        token_string = ""
-                    tokens_list.append(tiny_in[i])
-                    state = "START"
-                elif state == "START":
-                    if tiny_in[i] == " ":
-                        state = "START"
-                    elif tiny_in[i].isalpha():
-                        token_string += tiny_in[i]
-                        state = "INID"
-                    elif tiny_in[i].isdigit():
-                        token_string += tiny_in[i]
-                        state = "INNUM"
-                    elif tiny_in[i] == ":":
-                        token_string += tiny_in[i]
-                        state = "INASSIGN"
-                    else:
-                        state = "DONE"
-                elif state == "INID":
-                    if tiny_in[i].isalpha():
-                        token_string += tiny_in[i]
-                        state = "INID"
-                    else:
-                        state = "DONE"
-                elif state == "INNUM":
-                    if tiny_in[i].isdigit():
-                        token_string += tiny_in[i]
-                        state = "INNUM"
-                    else:
-                        state = "DONE"
-                elif state == "INASSIGN":
-                    if tiny_in[i] == "=":
-                        token_string += tiny_in[i]
-                        state = "DONE"
-                    else:
-                        state = "DONE"
-                elif state == "DONE":
-                    tokens_list.append(token_string)
-                    token_string = ""
-                    state = "START"
-                    i -= 1
-                i += 1
+            while i < len(tiny_in): # iterate for every char
+                if tiny_in[i] in special_sympols and state != "INASSIGN": # check if char is special symbol
+                    if (token_string != ""): # check if token_string is not empty
+                        tokens_list.append(token_string) # append token_string to tokens_list
+                        token_string = "" # reset token_string
+                    tokens_list.append(tiny_in[i]) # append char to tokens_list
+                    state = "START" # reset state
+                elif state == "START": # check if state is START
+                    if tiny_in[i] == " ": # check if char is space
+                        state = "START" # Stay in START state
+                    elif tiny_in[i].isalpha(): # check if char is alphabet
+                        token_string += tiny_in[i] # append char to token_string
+                        state = "INID" # change state to INID
+                    elif tiny_in[i].isdigit(): # check if char is digit
+                        token_string += tiny_in[i] # append char to token_string
+                        state = "INNUM" # change state to INNUM
+                    elif tiny_in[i] == ":": # check if char is :
+                        token_string += tiny_in[i] # append char to token_string
+                        state = "INASSIGN" # change state to INASSIGN
+                    else: # check if char is any other char
+                        state = "DONE"  # change state to DONE
+                elif state == "INID": # check if state is INID
+                    if tiny_in[i].isalpha(): # check if char is alphabet
+                        token_string += tiny_in[i] # append char to token_string
+                        state = "INID" # Stay in INID state
+                    else: # check if char is any other char
+                        state = "DONE" # change state to DONE
+                elif state == "INNUM": # check if state is INNUM
+                    if tiny_in[i].isdigit(): # check if char is digit
+                        token_string += tiny_in[i] # append char to token_string
+                        state = "INNUM" # Stay in INNUM state
+                    else: # check if char is any other char
+                        state = "DONE" # change state to DONE
+                elif state == "INASSIGN": # check if state is INASSIGN
+                    if tiny_in[i] == "=": # check if char is =
+                        token_string += tiny_in[i] # append char to token_string
+                        state = "DONE" # change state to DONE
+                    else: # check if char is any other char
+                        state = "DONE" # change state to DONE
+                elif state == "DONE": # check if state is DONE
+                    tokens_list.append(token_string) # append token_string to tokens_list
+                    token_string = "" # reset token_string
+                    state = "START" # reset state
+                    i -= 1 # decrement i
+                i += 1 # increment i
 
-            if(token_string != ""):
-                tokens_list.append(token_string)
-                token_string = ""
+            if(token_string != ""): # check if token_string is not empty
+                tokens_list.append(token_string) # append token_string to tokens_list
+                token_string = "" # reset token_string
 
         #local list to store token_types
-        tokens_types = []
-        for t in tokens_list:
-            if t in reversed_words:
-                tokens_types.append(t.upper())
-            elif t in special_sympols:
-                tokens_types.append(tokens_map[t])
-            elif t == ":=":
-                tokens_types.append('ASSIGN')
-            elif t.isdigit():
-                tokens_types.append('NUMBER')
-            elif t.isalpha():
-                tokens_types.append('IDENTIFIER')
+        tokens_types = [] 
+        for t in tokens_list: # loop over tokens_list
+            if t in reversed_words: # check if token is reversed word
+                tokens_types.append(t.upper()) # append token to tokens_types
+            elif t in special_sympols: # check if token is special symbol
+                tokens_types.append(tokens_map[t]) # append token to tokens_types
+            elif t == ":=": # check if token is :=
+                tokens_types.append('ASSIGN') # append token to tokens_types
+            elif t.isdigit(): # check if token is digit
+                tokens_types.append('NUMBER') # append token to tokens_types
+            elif t.isalpha(): # check if token is alphabet
+                tokens_types.append('IDENTIFIER') # append token to tokens_types
             else:
                 pass
         # Store the local variables into object attributes
-        self.tokens_values = tokens_list
+        self.tokens_values = tokens_list    
         self.tokens_types = tokens_types
 
 ###############################################################################################################
