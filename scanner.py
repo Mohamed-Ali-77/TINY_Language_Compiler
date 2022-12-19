@@ -48,16 +48,16 @@ class Scanner():
     def generate_tokens_UI(self):
         Scanner.Scan(self) # call scan method
         Scanner_out = "" # local variable to store output
-        error_line = None
+        error_lines = []
         self.tokens_values = [e for e in self.tokens_values if e not in ["\n (ERROR)", "\\ (ERROR)","\n","\\"]]
         self.tokens_types = [e for e in self.tokens_types if e not in ("\n (ERROR)", "\\ (ERROR)")]
         for i in range(len(self.tokens_values)): # loop over tokens_types list
             Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i]) # append to output
             if self.tokens_types[i].find("ERROR") != -1:
-                error_line = i 
-        if error_line == None:
-            return Scanner_out , None
-        return Scanner_out, error_line # return output
+                error_lines.append((self.tokens_types[i],i))
+        if error_lines == []:
+            return True, Scanner_out , None
+        return False, Scanner_out, error_lines # return output
 
     def Scan(self): # method that scan the input file
         #remove comments before start scanning
@@ -90,7 +90,7 @@ class Scanner():
                     elif tiny_in[i].isalpha(): # check if char is alphabet
                         token_string += tiny_in[i] # append char to token_string
                         state = "INID" # change state to INID
-                    elif tiny_in[i].isdigit(): # check if char is digit
+                    elif tiny_in[i].isdigit() or (tiny_in[i] =='-'): # check if char is digit
                         token_string += tiny_in[i] # append char to token_string
                         state = "INNUM" # change state to INNUM
                     elif tiny_in[i] == ":": # check if char is :
@@ -158,8 +158,8 @@ if __name__ == "__main__":
     print("Tokens generated from {} file:".format(file_name))
     Scanner_test = Scanner(file_name)
     Scanner_test.Scan()
-    tokens , line = Scanner_test.generate_tokens_UI()
-    print(tokens)
-    print(line)
+    #tokens , line = Scanner_test.generate_tokens_UI()
+    print(Scanner_test.tokens_values)
+    print(Scanner_test.tokens_types)
     #else:
         #pass

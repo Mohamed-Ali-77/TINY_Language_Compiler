@@ -1,3 +1,8 @@
 __pycache__
-ui_scannerui.py
-Parser_class.py
+colorNames.txt
+Icon
+venv
+build
+Tiny-Compiler.spec
+.idea
+dist
