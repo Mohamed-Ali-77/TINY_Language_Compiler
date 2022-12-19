@@ -20,158 +20,266 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0" rowspan="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="font">
-               <font>
-                <pointsize>10</pointsize>
-               </font>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">border-right-color: rgb(244, 255, 44);</string>
+                </property>
+                <property name="text">
+                 <string>File Path : </string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="browseButton">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">border-right-color: rgb(244, 255, 44);</string>
+              <property name="toolTip">
+               <string>Browsing file</string>
               </property>
               <property name="text">
-               <string>File Path : </string>
+               <string>Browse</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>Icon/search.png</normaloff>Icon/search.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>18</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
            </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="browseButton">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="toolTip">
-             <string>Browsing file</string>
-            </property>
-            <property name="text">
-             <string>Browse</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>Icon/search.png</normaloff>Icon/search.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>18</width>
-              <height>18</height>
-             </size>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-            <property name="default">
-             <bool>false</bool>
-            </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="toolTip">
+               <string>Enter file Path</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="EnterButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Enter the file </string>
+                </property>
+                <property name="text">
+                 <string>Enter</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>Icon/enter.png</normaloff>Icon/enter.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="scanButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Scan code</string>
+                </property>
+                <property name="text">
+                 <string>Scan</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>Icon/qr-code-scan.png</normaloff>Icon/qr-code-scan.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="parseButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Parse Code</string>
+                </property>
+                <property name="text">
+                 <string>Parse</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>Icon/parsing.png</normaloff>Icon/parsing.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="drawButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Draw AST</string>
+                </property>
+                <property name="text">
+                 <string>Draw</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>Icon/path.png</normaloff>Icon/path.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="toolTip">
-             <string>Enter file Path</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="EnterButton">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Enter the file </string>
-              </property>
-              <property name="text">
-               <string>Enter</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>Icon/enter.png</normaloff>Icon/enter.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="scanButton">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Scan code</string>
-              </property>
-              <property name="text">
-               <string>Scan</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>Icon/qr-code-scan.png</normaloff>Icon/qr-code-scan.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="parseButton">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Parse Code</string>
-              </property>
-              <property name="text">
-               <string>Parse</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>Icon/parsing.png</normaloff>Icon/parsing.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="drawButton">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Draw AST</string>
-              </property>
-              <property name="text">
-               <string>Draw</string>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>Icon/path.png</normaloff>Icon/path.png</iconset>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="codeButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>189</width>
+            <height>29</height>
+           </size>
+          </property>
+          <property name="toolTip">
+           <string>Code</string>
+          </property>
+          <property name="text">
+           <string>Code</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/icons8-code-file-48.png</normaloff>Icon/icons8-code-file-48.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="tokensButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>189</width>
+            <height>29</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>Tokens</string>
+          </property>
+          <property name="text">
+           <string>Tokens</string>
+          </property>
+          <property name="icon">
+           <iconset theme="accessories-character-map">
+            <normaloff>Icon/tokens.png</normaloff>Icon/tokens.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="problemsButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>189</width>
+            <height>29</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="toolTip">
+           <string>Problems</string>
+          </property>
+          <property name="text">
+           <string>Problems</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/warning.png</normaloff>Icon/warning.png</iconset>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -191,7 +299,7 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1" rowspan="5">
+    <item row="1" column="1" rowspan="4">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -205,79 +313,6 @@
      </spacer>
     </item>
     <item row="2" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="codeButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="toolTip">
-         <string>Code</string>
-        </property>
-        <property name="text">
-         <string>Code</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>Icon/icons8-code-file-48.png</normaloff>Icon/icons8-code-file-48.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="tokensButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="toolTip">
-         <string>Tokens</string>
-        </property>
-        <property name="text">
-         <string>Tokens</string>
-        </property>
-        <property name="icon">
-         <iconset theme="accessories-character-map">
-          <normaloff>Icon/tokens.png</normaloff>Icon/tokens.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="problemsButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="toolTip">
-         <string>Problems</string>
-        </property>
-        <property name="text">
-         <string>Problems</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>Icon/warning.png</normaloff>Icon/warning.png</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="3" column="0">
      <widget class="QPlainTextEdit" name="plainTextEdit">
       <property name="enabled">
        <bool>false</bool>
@@ -294,7 +329,7 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="3" column="0">
      <widget class="QPushButton" name="generateButton">
       <property name="enabled">
        <bool>false</bool>
@@ -311,7 +346,7 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
+    <item row="4" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <widget class="QLabel" name="label_3">
