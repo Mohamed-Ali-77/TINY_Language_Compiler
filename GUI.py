@@ -125,7 +125,6 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         
 
     def Help(self):
-        #QMessageBox.about(self, "Help", "1- Enter the code By Browse button or enter the path in linedit.\n2- Click on Scan button to scan the code.\n3- Click on Parse button to parse the code.\n4- Click on Draw button to draw the AST.\n5- Click on Generate button to generate tokens file.\n6- Click on Tokens button to view the tokens.\n7- Click on Problems button to view the problems.\n8- Click on Code button to view the code.\n9- Click on Close button in the menu bar to close the application.\n10- Click on About button to view the application information.\n12- Click on Shortcuts button to view the application shortcuts.\n13- Click on Light mode button to toggle between light and dark mode.")
         QMessageBox.about(self, "Help","The Tiny Compiler app is a powerful tool for compiling code written in the Tiny language. It offers a range of features, including syntax highlighting, error checking, and code completion, to help you write and debug your code more efficiently.\
 To use the app, simply open a new file and start writing your code. When you're ready to compile, click the \"Browse\" button to enter your code.")
 
