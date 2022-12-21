@@ -26,9 +26,8 @@ class Parser:   # parser class
 
     def __init__(self): # constructor
         self.token = "" # current token
-        self.tokens_types = ['IF', 'IDENTIFIER', 'SEMICOLON', 'IF', 'NUMBER', 'LESS', 'IDENTIFIER', 'THEN']
-        self.tokens_values = ['if', 'x', ';', 'if', '3', '<', 'y', 'then']
-        self.tmp_index = 0  # index of the current token
+        self.tokens_types = ['READ', 'IDENTIFIER', 'SEMICOLON', 'IF', 'NUMBER', 'LESSTHAN', 'IDENTIFIER', 'THEN', 'IDENTIFIER', 'ASSIGN', 'NUMBER', 'SEMICOLON', 'REPEAT', 'IDENTIFIER', 'ASSIGN', 'IDENTIFIER', 'MULT', 'IDENTIFIER', 'SEMICOLON', 'IDENTIFIER', 'ASSIGN', 'IDENTIFIER', 'MINUS', 'NUMBER', 'UNTIL', 'IDENTIFIER', 'EQUAL', 'NUMBER', 'SEMICOLON', 'WRITE', 'IDENTIFIER', 'END']
+        self.tokens_values = ['read', 'x', ';', 'if', '0', '<', 'x', 'then', 'fact', ':=', '1', ';', 'repeat', 'fact', ':=', 'fact', '*', 'x', ';', 'x', ':=', 'x', '-', '1', 'until', 'x', '=', '0', ';', 'write', 'fact', 'end']
         self.token = self.tokens_types[self.tmp_index]  # current token
         self.parse_tree = None  # parse tree
         self.nodes_table = None # nodes table
@@ -277,3 +276,6 @@ class Parser:   # parser class
 if __name__ == '__main__': # main function
     parser = Parser() # create an object from the Parser class
     parser.run() # run the parser
+    print(parser.nodes_table) # print the nodes_table
+    print(parser.edges_table) # print the edges_table
+    print(parser.same_rank_nodes) # print the same_rank_nodes list

@@ -1,6 +1,7 @@
 # import libraries
 import os
 import sys
+import subprocess
 import matplotlib.pyplot as plt
 import qtawesome as qta
 import PyQt6
@@ -13,6 +14,7 @@ from scanner import Scanner
 from Parser_class import Parser
 from SyntaxHighlighting import SyntaxHighlighter
 import networkx as nx
+import pygraphviz     
 import matplotlib
 from ui_GUI import Ui_MainWindow
 matplotlib.use("TkAgg")
@@ -133,7 +135,12 @@ To use the app, simply open a new file and start writing your code. When you're 
 
 
     def About(self):
-        QMessageBox.about(self, "About", "Tiny language Compiler\nVersion: 1.0\nDeveloped by: Mohamed Ali\nOS: Windows 10\n\
+        QMessageBox.about(self, "About", "Tiny language Compiler\nVersion: 1.0\nDeveloped by: Mohamed Ali\n\
+                        Mohamed Emad\n\
+                        Mohamed Elsayed\n\
+                        Moamen Waleed\n\
+                        Mohamed Assran\n\
+\nOS: Windows 10\n\
 Python Version: 3.11.0\nPyQt6 Version: 6.1.2\nMatplotlib Version: 3.4.2\nNetworkx Version: 2.6.3\nQDarkTheme Version: 2.8.1")
 
     # Method to Show Code in plainTextEdit
@@ -298,12 +305,6 @@ Python Version: 3.11.0\nPyQt6 Version: 6.1.2\nMatplotlib Version: 3.4.2\nNetwork
 
     # Method to take tokens and parse it into parser class to create AST and show it
     def pygraphviz_layout_with_rank(self, G, prog="dot", root=None, sameRank=[], args=""): # Layout for AST
-        try: # pygraphviz_layout was removed in networkx 2.0
-            import pygraphviz 
-        except ImportError: 
-            raise ImportError('requires pygraphviz ',
-                              'http://networkx.lanl.gov/pygraphviz ',
-                              '(not available for Python3)')    
         if root is not None:  # add root to args for pygraphviz
             args += "-Groot=%s" % root # add root to args for pygraphviz
         A = nx.nx_agraph.to_agraph(G) # create a new graph with pygraphviz
@@ -387,4 +388,8 @@ def main():
 
 
 if __name__ == "__main__":
+    os.system("pip freeze > requirements.txt")
+    os.system("pip install -r requirements.txt")
+    #subprocess.check_call([sys.executable, '-m','pip','install','-r','requirements.txt'])
     main()
+    #os.remove("requirements.txt")

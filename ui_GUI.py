@@ -269,7 +269,7 @@ class Ui_MainWindow(object):
         self.helpButton.setToolTip(_translate("MainWindow", "help"))
         self.generateButton.setToolTip(_translate("MainWindow", "Generate tokens file"))
         self.generateButton.setText(_translate("MainWindow", "Generate Tokens File"))
-        self.label_3.setText(_translate("MainWindow", "© All Copy rights reserved to Bakr"))
+        self.label_3.setText(_translate("MainWindow", "© All Copy rights reserved to the team"))
         self.menuMode.setTitle(_translate("MainWindow", "Mode"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuhelp.setTitle(_translate("MainWindow", "About"))

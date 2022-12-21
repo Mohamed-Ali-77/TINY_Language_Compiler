@@ -51,6 +51,8 @@ class Scanner():
         error_lines = []
         self.tokens_values = [e for e in self.tokens_values if e not in ["\n (ERROR)", "\\ (ERROR)","\n","\\"]]
         self.tokens_types = [e for e in self.tokens_types if e not in ("\n (ERROR)", "\\ (ERROR)")]
+        print(self.tokens_values)
+        print(self.tokens_types)
         for i in range(len(self.tokens_values)): # loop over tokens_types list
             Scanner_out += "{},{}\n".format(self.tokens_values[i],self.tokens_types[i]) # append to output
             if self.tokens_types[i].find("ERROR") != -1:
@@ -159,7 +161,6 @@ if __name__ == "__main__":
     Scanner_test = Scanner(file_name)
     Scanner_test.Scan()
     #tokens , line = Scanner_test.generate_tokens_UI()
-    print(Scanner_test.tokens_values)
-    print(Scanner_test.tokens_types)
+    Scanner_test.generate_tokens_UI()
     #else:
         #pass
