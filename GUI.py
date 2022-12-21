@@ -390,6 +390,5 @@ def main():
 if __name__ == "__main__":
     os.system("pip freeze > requirements.txt")
     os.system("pip install -r requirements.txt")
-    #subprocess.check_call([sys.executable, '-m','pip','install','-r','requirements.txt'])
     main()
     #os.remove("requirements.txt")

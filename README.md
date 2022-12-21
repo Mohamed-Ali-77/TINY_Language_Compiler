@@ -3,6 +3,8 @@ A compiler for a tiny language written in Python.
 1. [Introduction](#introduction)
 2. [Installation](#installation)
 3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [License](#license)
 
 ## Introduction
 The Tiny Compiler app is a powerful tool for compiling code written in the Tiny language. It offers a range of features, including syntax highlighting, error checking, and code completion, to help you write and debug your code more efficiently.\
