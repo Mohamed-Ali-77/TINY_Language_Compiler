@@ -297,22 +297,18 @@
        <iconset>
         <normaloff>Icon/question.png</normaloff>Icon/question.png</iconset>
       </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
-    <item row="1" column="1" rowspan="4">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>10</width>
-        <height>530</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="0">
+    <item row="2" column="0" colspan="2">
      <widget class="QPlainTextEdit" name="plainTextEdit">
       <property name="enabled">
        <bool>false</bool>
@@ -329,24 +325,34 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QPushButton" name="generateButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="toolTip">
-       <string>Generate tokens file</string>
-      </property>
-      <property name="text">
-       <string>Generate Tokens File</string>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>Icon/create.png</normaloff>Icon/create.png</iconset>
-      </property>
-     </widget>
+    <item row="3" column="0" colspan="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <widget class="QPushButton" name="generateButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Generate tokens file</string>
+        </property>
+        <property name="text">
+         <string>Generate Tokens File</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="generateproblemsButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Generate Problems File</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
-    <item row="4" column="0">
+    <item row="4" column="0" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <widget class="QLabel" name="label_3">
@@ -359,7 +365,23 @@
          </font>
         </property>
         <property name="text">
-         <string>© All Copy rights reserved to the team</string>
+         <string>© All Copy rights reserved to the team                                </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string/>
         </property>
        </widget>
       </item>
@@ -413,6 +435,9 @@
     <addaction name="actionShortcuts"/>
     <addaction name="separator"/>
     <addaction name="actionHow_to_use"/>
+    <addaction name="separator"/>
+    <addaction name="actionTime_and_Date"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuMode"/>
@@ -495,6 +520,11 @@
     <font>
      <pointsize>8</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionTime_and_Date">
+   <property name="text">
+    <string>Time and Date</string>
    </property>
   </action>
  </widget>

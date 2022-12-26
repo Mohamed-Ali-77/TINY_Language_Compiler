@@ -1,5 +1,5 @@
 ![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
-![language](https://img.shields.io/badge/language-python-blue.svg)]
+![language](https://img.shields.io/badge/language-python-blue.svg)
 ![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)

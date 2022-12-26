@@ -1,0 +1,4 @@
+Error Type       Token     Number
+Syntax  Error:   EQUAL     9
+Syntax  Error:   EQUAL     14
+Syntax  Error:   EQUAL     20

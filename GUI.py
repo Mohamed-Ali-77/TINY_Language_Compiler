@@ -2,6 +2,7 @@
 import os
 import sys
 import subprocess
+import datetime
 import matplotlib.pyplot as plt
 import qtawesome as qta
 import PyQt6
@@ -90,6 +91,7 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.drawButton.clicked.connect(self.Draw) # Draw button signal
         self.browseButton.clicked.connect(self.Browse) # Browse button signal
         self.generateButton.clicked.connect(self.Generate) # Generate button signal
+        self.generateproblemsButton.clicked.connect(self.GenerateProblems) # Generate problems button signal
         self.tokensButton.clicked.connect(self.Tokens) # Tokens button signal
         self.problemsButton.clicked.connect(self.Problems) # Problems button signal
         self.codeButton.clicked.connect(self.Code) # Code button signal
@@ -103,6 +105,17 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.About) # About action signal
         self.actionShortcuts.triggered.connect(self.Shortcuts) # Shortcuts action signal
         self.actionHow_to_use.triggered.connect(self.How_to_use) # How to use action signal
+
+        # Set label text to current date and time
+        self.label_4.setStyleSheet("QLabel { color : gold; }") # Set label style sheet
+        def update_datetime():
+            datetime = QDateTime.currentDateTime()
+            datetime.toLocalTime()
+            self.label_4.setText("📅Date:  {}                        ⏳Time:  {}".format(datetime.toString("dd-MM-yyyy"), datetime.toString("hh:mm:ss")))
+
+        timer = QTimer(self) # create timer
+        timer.timeout.connect(update_datetime) # connect timer to update_datetime function
+        timer.start(1000)  # update every 1000 milliseconds (1 second) 
 
         # set shortcuts
         self.actionClose.setShortcut('Ctrl+Q')
@@ -120,7 +133,8 @@ class MyGUI(QMainWindow, Ui_MainWindow):
         self.helpButton.setShortcut('Ctrl+H')
         self.actionHow_to_use.setShortcut('Ctrl+U')
 
-
+    def Time_and_Date(self):
+        self.label_4.setText(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
     # Methods to handle signals
     def How_to_use(self):
         QMessageBox.about(self, "How to use","1- Enter the code By Browse button or enter the path in linedit.\n2- Click on Scan button to scan the code.\n3- Click on Parse button to parse the code.\n4- Click on Draw button to draw the AST.\n5- Click on Generate button to generate tokens file.\n6- Click on Tokens button to view the tokens.\n7- Click on Problems button to view the problems.\n8- Click on Code button to view the code.\n9- Click on Close button in the menu bar to close the application.\n10- Click on About button to view the application information.\n12- Click on Shortcuts button to view the application shortcuts.\n13- Click on Light mode button to toggle between light and dark mode.")
@@ -173,6 +187,7 @@ Python Version: 3.11.0\nPyQt6 Version: 6.1.2\nMatplotlib Version: 3.4.2\nNetwork
 
     #Method TO show problems in plainTextEdit
     def Problems(self):
+        self.generateproblemsButton.setEnabled(True)
         self.highlighter.clear_highlight() # Clear highlight
         self.label_2.setText("Problems")
         self.plainTextEdit.setEnabled(True) # Enable plainTextEdit
@@ -297,7 +312,13 @@ Python Version: 3.11.0\nPyQt6 Version: 6.1.2\nMatplotlib Version: 3.4.2\nNetwork
             message2.setText("Scanner Failed.\nPlease Check Proplems output for more information.")
             message2.exec()
 
+    def GenerateProblems(self):
+        problems = self.plainTextEdit.toPlainText()
+        f = open("output_problems/problems_"+ str(os.path.basename(self.Filename)), "w+") # open file to write
+        f.write(problems) # write output to file
+        f.close()   # close file
 
+        
     # Method to create tokens file
     def Generate(self): 
         self.Scanned.generate_tokens() # Generate tokens file -> tokens.txt
@@ -388,7 +409,7 @@ def main():
 
 
 if __name__ == "__main__":
-    os.system("pip freeze > requirements.txt")
-    os.system("pip install -r requirements.txt")
+    #os.system("pip freeze > requirements.txt")
+    #os.system("pip install -r requirements.txt")
     main()
     #os.remove("requirements.txt")
