@@ -252,7 +252,6 @@ class Ui_MainWindow(object):
         self.menuhelp.addSeparator()
         self.menuhelp.addAction(self.actionHow_to_use)
         self.menuhelp.addSeparator()
-        self.menuhelp.addAction(self.actionTime_and_Date)
         self.menuhelp.addSeparator()
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuMode.menuAction())

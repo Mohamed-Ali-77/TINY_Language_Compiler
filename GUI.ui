@@ -436,7 +436,6 @@
     <addaction name="separator"/>
     <addaction name="actionHow_to_use"/>
     <addaction name="separator"/>
-    <addaction name="actionTime_and_Date"/>
     <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
