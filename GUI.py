@@ -318,7 +318,7 @@ Python Version: 3.11.0\nPyQt6 Version: 6.1.2\nMatplotlib Version: 3.4.2\nNetwork
         f.write(problems) # write output to file
         f.close()   # close file
 
-        
+
     # Method to create tokens file
     def Generate(self): 
         self.Scanned.generate_tokens() # Generate tokens file -> tokens.txt
@@ -409,7 +409,7 @@ def main():
 
 
 if __name__ == "__main__":
-    #os.system("pip freeze > requirements.txt")
-    #os.system("pip install -r requirements.txt")
+    os.system("pip freeze > requirements.txt")
+    os.system("pip install -r requirements.txt")
     main()
     #os.remove("requirements.txt")

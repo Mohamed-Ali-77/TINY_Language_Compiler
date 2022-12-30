@@ -10,10 +10,11 @@ A compiler for a tiny language written in python using pyqt6 for the GUI.
 1. [Introduction](#introduction)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [Main Features](#main-features)
-5. [Example](#example)
-6. [Contributing](#contributing)
-7. [License](#license)
+4. [Screenshots](#screenshots)
+5. [Main Features](#main-features)
+6. [Example](#example)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 ## Introduction
 The Tiny Compiler app is a powerful tool for compiling code written in the Tiny language. It offers a range of features, including syntax highlighting, error checking, and code completion, to help you write and debug your code more efficiently.\
@@ -35,8 +36,13 @@ simply clone the project and run
 python3 GUI.py
 ```
 ## Usage
-please read the [documentation](Documentation.docx) for more information.
+Please read the [documentation](Documentation.docx) for more information.
 
+## Screenshots
+Main window:
+![alt text](Screenshots/1.png)
+Proplems window:
+![alt text](Screenshots/2.png)
 
 ## Main Features
 - Syntax highlighting
